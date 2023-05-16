@@ -6,6 +6,8 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 // import productScreen from "./screen/ProductScreen.jsx";
 import "./bootstrap.min.css";
 import HomeScreen from "./screens/HomeScreen.jsx";
+import ProductScreen from "./screens/ProductScreen.jsx";
+import ConditionsOfUse from "./components/ConditionsOfUse.jsx";
 
 function App() {
   return (
@@ -14,7 +16,8 @@ function App() {
       <main className="py-3">
         <Container>
           <Route path="/" component={HomeScreen} exact />
-          {/* <Route path="/product/:id" component={productScreen} /> */}
+          <Route path="/product/:id" component={ProductScreen} exact />
+          <Route path="/conditions-of-use" component={ConditionsOfUse} exact />
         </Container>
       </main>
       <Footer />
