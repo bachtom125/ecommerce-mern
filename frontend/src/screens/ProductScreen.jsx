@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   Row,
@@ -14,11 +14,10 @@ import {
 } from "react-bootstrap";
 import products from "../sample-data/productsData";
 import Rating from "../components/Rating";
+import axios from "axios";
 // import { Meta } from "react-helmet";
 
 const ProductScreen = ({ match }) => {
-  const product = products.find((product) => product._id === match.params.id);
-
   const [chosenQuantity, setChosenQuantity] = useState(1);
 
   const decrementQuantity = () => {
@@ -28,6 +27,17 @@ const ProductScreen = ({ match }) => {
   const incrementQuantity = () => {
     setChosenQuantity(chosenQuantity + 1);
   };
+
+  const [product, setProduct] = useState({});
+  useEffect(() => {
+    const fetchProduct = async () => {
+      const { data } = await axios.get(
+        `http://localhost:5000/api/products/${match.params.id}`
+      );
+      setProduct(data);
+    };
+    fetchProduct();
+  }, []);
 
   return (
     <>

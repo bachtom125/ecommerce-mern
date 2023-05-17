@@ -8,6 +8,7 @@ import "./bootstrap.min.css";
 import HomeScreen from "./screens/HomeScreen.jsx";
 import ProductScreen from "./screens/ProductScreen.jsx";
 import ConditionsOfUse from "./components/ConditionsOfUse.jsx";
+import CartScreen from "./screens/CartScreen.jsx";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Container>
           <Route path="/" component={HomeScreen} exact />
           <Route path="/product/:id" component={ProductScreen} exact />
+          <Route path="/cart" component={CartScreen} exact />
           <Route path="/conditions-of-use" component={ConditionsOfUse} exact />
         </Container>
       </main>
