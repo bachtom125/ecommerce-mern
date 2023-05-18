@@ -104,7 +104,7 @@ const ProductScreen = ({ history, match }) => {
                         <i className="fa-solid fa-minus fa-beat" />
                       </Button>
                     </Col>
-                    <Col className="col-6">
+                    <Col>
                       <FormControl
                         className="form-control-sm"
                         type="number"
