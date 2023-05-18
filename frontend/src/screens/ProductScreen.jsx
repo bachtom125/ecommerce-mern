@@ -17,7 +17,7 @@ import Rating from "../components/Rating";
 import axios from "axios";
 // import { Meta } from "react-helmet";
 
-const ProductScreen = ({ match }) => {
+const ProductScreen = ({ history, match }) => {
   const [chosenQuantity, setChosenQuantity] = useState(1);
 
   const decrementQuantity = () => {
@@ -26,6 +26,10 @@ const ProductScreen = ({ match }) => {
 
   const incrementQuantity = () => {
     setChosenQuantity(chosenQuantity + 1);
+  };
+
+  const addToCardHandler = () => {
+    history.push(`/cart/${match.params.id}/${chosenQuantity}`);
   };
 
   const [product, setProduct] = useState({});
@@ -46,7 +50,7 @@ const ProductScreen = ({ match }) => {
         <strong> Go Back</strong>
       </Link>
       <Row>
-        <Col md={4}>
+        <Col md={3}>
           <Image src={product.image} alt={product.name} fluid></Image>
         </Col>
         <Col md={5}>
@@ -95,6 +99,7 @@ const ProductScreen = ({ match }) => {
                         className="btn-sm"
                         variant="light"
                         onClick={decrementQuantity}
+                        disabled={chosenQuantity <= 0}
                       >
                         <i className="fa-solid fa-minus fa-beat" />
                       </Button>
@@ -112,6 +117,7 @@ const ProductScreen = ({ match }) => {
                         className="btn-sm"
                         variant="light"
                         onClick={incrementQuantity}
+                        disabled={product.countInStock < chosenQuantity}
                       >
                         <i className="fa-solid fa-plus fa-beat" />
                       </Button>
@@ -141,6 +147,7 @@ const ProductScreen = ({ match }) => {
                     product.countInStock < chosenQuantity ||
                     chosenQuantity === 0
                   }
+                  onClick={addToCardHandler}
                 >
                   ADD TO CART
                 </Button>
