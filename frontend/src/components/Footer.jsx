@@ -1,5 +1,6 @@
 // import React from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row, Nav } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 
 const Footer = () => {
   return (
@@ -7,7 +8,11 @@ const Footer = () => {
       <Container>
         <Row>
           <Col className="text-center py-3">Copyright &copy; Jumanji</Col>
-          <Col className="text-center py-3">Conditions of Use</Col>
+          <Col className="text-center py-3">
+            <LinkContainer to="/conditions-of-use">
+              <Nav.Link>Conditions of Use</Nav.Link>
+            </LinkContainer>
+          </Col>
           <Col className="text-center py-3">Privacy Notice</Col>
         </Row>
         <Row>
