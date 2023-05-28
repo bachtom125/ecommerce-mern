@@ -13,7 +13,11 @@ const Footer = () => {
               <Nav.Link>Conditions of Use</Nav.Link>
             </LinkContainer>
           </Col>
-          <Col className="text-center py-3">Privacy Notice</Col>
+          <Col className="text-center py-3">
+            <LinkContainer to="/privacy-notice">
+              <Nav.Link>Privacy Notice</Nav.Link>
+            </LinkContainer>
+          </Col>
         </Row>
         <Row>
           <Col className="text-center py-3">@1999-2023, Jumanji.com, Inc</Col>

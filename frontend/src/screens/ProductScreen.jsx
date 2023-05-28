@@ -32,7 +32,7 @@ const ProductScreen = ({ history, match }) => {
   };
 
   const addToCardHandler = () => {
-    history.push(`/cart/${match.params.id}/${chosenQuantity}`);
+    history.push(`/cart/${match.params.id}/?qty=${chosenQuantity}`);
   };
 
   const productDetails = useSelector((state) => state.productDetails);

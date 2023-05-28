@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./bootstrap.min.css";
 import HomeScreen from "./screens/HomeScreen.jsx";
 import ProductScreen from "./screens/ProductScreen.jsx";
-import ConditionsOfUse from "./components/ConditionsOfUse.jsx";
+import ConditionsOfUseScreen from "./screens/ConditionsOfUseScreen.jsx";
 import CartScreen from "./screens/CartScreen.jsx";
 
 function App() {
@@ -18,8 +18,17 @@ function App() {
         <Container>
           <Route path="/" component={HomeScreen} exact />
           <Route path="/product/:id" component={ProductScreen} exact />
-          <Route path="/cart/:id?/:qty?" component={CartScreen} exact />
-          <Route path="/conditions-of-use" component={ConditionsOfUse} exact />
+          <Route path="/cart/:id?" component={CartScreen} />
+          <Route
+            path="/privacy-notice"
+            component={ConditionsOfUseScreen}
+            exact
+          />
+          <Route
+            path="/conditions-of-use"
+            component={ConditionsOfUseScreen}
+            exact
+          />
         </Container>
       </main>
       <Footer />
