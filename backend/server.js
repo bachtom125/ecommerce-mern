@@ -2,6 +2,7 @@ import express, { json } from "express";
 const app = express();
 import cors from "cors";
 import path from "path";
+import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
 import connectDB from "./database/connectDB.js";
 import productRoutes from "./routes/productRoutes.js";
@@ -13,6 +14,8 @@ app.use(express.urlencoded({ extended: true }));
 connectDB();
 
 app.use(cors());
+app.use(cookieParser());
+
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
 
