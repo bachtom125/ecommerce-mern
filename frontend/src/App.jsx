@@ -9,6 +9,8 @@ import HomeScreen from "./screens/HomeScreen.jsx";
 import ProductScreen from "./screens/ProductScreen.jsx";
 import ConditionsOfUseScreen from "./screens/ConditionsOfUseScreen.jsx";
 import CartScreen from "./screens/CartScreen.jsx";
+import LoginScreen from "./screens/LoginScreen.jsx";
+import ProfileScreen from "./screens/ProfileScreen.jsx";
 
 function App() {
   return (
@@ -19,6 +21,9 @@ function App() {
           <Route path="/" component={HomeScreen} exact />
           <Route path="/product/:id" component={ProductScreen} exact />
           <Route path="/cart/:id?" component={CartScreen} />
+          <Route path="/login" component={LoginScreen} />
+          <Route path="/profile" component={ProfileScreen} />
+
           <Route
             path="/privacy-notice"
             component={ConditionsOfUseScreen}
