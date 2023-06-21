@@ -33,7 +33,12 @@ function App() {
           <Route path="/placeorder" component={PlaceOrderScreen} />
           <Route path="/profile" component={ProfileScreen} />
           <Route path="/order/:id" component={OrderScreen} />
-
+          <Route
+            path="/search/:keyword/page/:pageNumber"
+            component={HomeScreen}
+            exact
+          />
+          <Route path="/search/:keyword" component={HomeScreen} exact />
           <Route
             path="/privacy-notice"
             component={ConditionsOfUseScreen}

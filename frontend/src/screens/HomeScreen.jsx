@@ -1,38 +1,60 @@
+/* eslint-disable react/prop-types */
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { listProducts } from "../actions/productActions.jsx";
 import { Row, Col } from "react-bootstrap";
-import Loader from "../components/Loader.jsx";
 import Product from "../components/Products.jsx";
-import axios from "axios";
+import Message from "../components/Message.jsx";
+import Loader from "../components/Loader.jsx";
+import Paginate from "../components/Paginate.jsx";
+import ProductCarousel from "../components/ProductCarousel.jsx";
+import Meta from "../components/Meta.jsx";
+import { listProducts } from "../actions/productActions.jsx";
 
-const HomeScreen = () => {
-  const productList = useSelector((state) => state.productList);
+const HomeScreen = ({ match }) => {
+  const keyword = match.params.keyword;
 
-  const { loading, error, products } = productList;
+  const pageNumber = match.params.pageNumber || 1;
 
   const dispatch = useDispatch();
 
+  const productList = useSelector((state) => state.productList);
+  const { loading, error, products, page, pages } = productList;
+
   useEffect(() => {
-    dispatch(listProducts());
-  }, [dispatch]);
+    dispatch(listProducts(keyword, pageNumber));
+  }, [dispatch, keyword, pageNumber]);
 
   return (
     <>
+      <Meta />
+      {!keyword ? (
+        <ProductCarousel />
+      ) : (
+        <Link className="btn btn-dark my-3" to="/">
+          <i className="fas fa-arrow-left" />
+          <strong> Go Back</strong>
+        </Link>
+      )}
+      <h1>Latest Products</h1>
       {loading ? (
         <Loader />
       ) : error ? (
-        <h3>{error}</h3>
+        <Message variant="danger">{error}</Message>
       ) : (
         <>
-          <h2>Latest Products</h2>
           <Row>
             {products.map((product) => (
-              <Col sm={12} md={6} lg={4} xl={3} key={product._id}>
+              <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
                 <Product product={product} />
               </Col>
             ))}
           </Row>
+          <Paginate
+            pages={pages}
+            page={page}
+            keyword={keyword ? keyword : ""}
+          />
         </>
       )}
     </>
