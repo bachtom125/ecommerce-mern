@@ -12,6 +12,7 @@ import CartScreen from "./screens/CartScreen.jsx";
 import LoginScreen from "./screens/LoginScreen.jsx";
 import ProfileScreen from "./screens/ProfileScreen.jsx";
 import RegisterScreen from "./screens/RegisterScreen.jsx";
+import ShippingScreen from "./screens/ShippingScreen.jsx";
 
 function App() {
   return (
@@ -24,8 +25,7 @@ function App() {
           <Route path="/cart/:id?" component={CartScreen} />
           <Route path="/login" component={LoginScreen} />
           <Route path="/register" component={RegisterScreen} />
-          <Route path="/profile" component={ProfileScreen} />
-
+          <Route path="/shipping" component={ShippingScreen} />
           <Route
             path="/privacy-notice"
             component={ConditionsOfUseScreen}
