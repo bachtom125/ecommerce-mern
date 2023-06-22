@@ -4,6 +4,7 @@ import Product from "./models/productModel.js";
 import mongoose from "mongoose";
 import users from "./sample-data/usersData.js";
 import User from "./models/userModel.js";
+import Order from "./models/orderModel.js";
 
 connectDB();
 
@@ -30,6 +31,9 @@ const deleteData = async () => {
 
     await User.deleteMany();
     console.log("Users have been Deleted!");
+
+    await Order.deleteMany();
+    console.log("Orders have been Deleted!");
 
     process.exit();
   } catch (error) {

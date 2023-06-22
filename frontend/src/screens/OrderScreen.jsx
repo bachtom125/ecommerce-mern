@@ -67,6 +67,16 @@ const OrderScreen = ({ match, history }) => {
   };
 
   const deliverHandler = () => {
+    if (order.paymentMethod == "Cash") {
+      const paymentResult = {
+        status: "COMPLETED",
+        id: order._id,
+        payer: {
+          email_address: order.user.email,
+        },
+      };
+      dispatch(payOrder(orderId, paymentResult));
+    }
     dispatch(deliverOrder(order));
   };
 
@@ -180,7 +190,7 @@ const OrderScreen = ({ match, history }) => {
                   <Col>${order.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
-              {!order.isPaid && (
+              {!order.isPaid && order.paymentMethod != "Cash" && (
                 <ListGroup.Item>
                   {loadingPay && <Loader />}
                   {!sdkReady ? (
@@ -196,7 +206,7 @@ const OrderScreen = ({ match, history }) => {
               {loadingDeliver && <Loader />}
               {userInfo &&
                 userInfo.isAdmin &&
-                order.isPaid &&
+                (order.isPaid || order.paymentMethod == "Cash") &&
                 !order.isDelivered && (
                   <ListGroup.Item>
                     <Button

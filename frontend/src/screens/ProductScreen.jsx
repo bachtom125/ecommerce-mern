@@ -12,7 +12,6 @@ import {
   Form,
   FormControl,
 } from "react-bootstrap";
-import products from "../sample-data/productsData.js";
 import Message from "../components/Message.jsx";
 import Rating from "../components/Rating.jsx";
 import axios from "axios";

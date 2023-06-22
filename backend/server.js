@@ -8,6 +8,7 @@ import connectDB from "./database/connectDB.js";
 import productRoutes from "./routes/productRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
+import uploadRoutes from "./routes/uploadRoutes.js";
 
 // Body Parser Middleware
 app.use(express.json());
@@ -20,8 +21,12 @@ app.use(cookieParser());
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/orders", orderRoutes);
+app.use("/api/upload", uploadRoutes);
 
-const PORT = process.env.PORT || 5000;
+const __dirname = path.resolve();
+app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
+
+const PORT = 5000;
 app.listen(PORT, console.log(`Server running on Port: ${PORT}`));
 
 export default app;

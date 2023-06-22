@@ -1,8 +1,11 @@
 import { combineReducers, createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import {
-  productDetailsReducer,
   productListReducer,
+  productDetailsReducer,
+  productDeleteReducer,
+  productCreateReducer,
+  productUpdateReducer,
   productReviewCreateReducer,
   productTopRatedReducer,
 } from "./reducers/ProductReducers.js";
@@ -31,6 +34,9 @@ const reducer = combineReducers({
   productDetails: productDetailsReducer,
   productReviewCreate: productReviewCreateReducer,
   productTopRated: productTopRatedReducer,
+  productDelete: productDeleteReducer,
+  productCreate: productCreateReducer,
+  productUpdate: productUpdateReducer,
   cart: cartReducer,
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,

@@ -1,115 +1,146 @@
-import { LinkContainer } from 'react-router-bootstrap';
-import { Table, Button, Row, Col } from 'react-bootstrap';
-import { FaEdit, FaPlus, FaTrash } from 'react-icons/fa';
-import { useParams } from 'react-router-dom';
-import Message from '../../components/Message';
-import Loader from '../../components/Loader';
-import Paginate from '../../components/Paginate';
+/* eslint-disable react/prop-types */
+import { LinkContainer } from "react-router-bootstrap";
+import { Table, Button, Row, Col } from "react-bootstrap";
+import { FaEdit, FaPlus, FaTrash } from "react-icons/fa";
+import { useParams } from "react-router-dom";
+
+import Message from "../../components/Message.jsx";
+import Loader from "../../components/Loader.jsx";
+import Paginate from "../../components/Paginate.jsx";
+
+import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
 import {
-    useGetProductsQuery,
-    useDeleteProductMutation,
-    useCreateProductMutation,
-} from '../../slices/productsApiSlice';
-import { toast } from 'react-toastify';
+  listProducts,
+  deleteProduct,
+  createProduct,
+} from "../../actions/productActions.jsx";
+import { PRODUCT_CREATE_RESET } from "../../constants/productConstants.js";
+import { useEffect } from "react";
 
-const ProductListScreen = () => {
-    const { pageNumber } = useParams();
+const ProductListScreen = ({ history, match }) => {
+  const pageNumber = match.params.pageNumber || 1;
 
-    const { data, isLoading, error, refetch } = useGetProductsQuery({
-        pageNumber,
-    });
+  const dispatch = useDispatch();
 
-    const [deleteProduct, { isLoading: loadingDelete }] =
-        useDeleteProductMutation();
+  const productList = useSelector((state) => state.productList);
+  const { loading, error, products, page, pages } = productList;
 
-    const deleteHandler = async (id) => {
-        if (window.confirm('Are you sure')) {
-            try {
-                await deleteProduct(id);
-                refetch();
-            } catch (err) {
-                toast.error(err?.data?.message || err.error);
-            }
-        }
-    };
+  const productDelete = useSelector((state) => state.productDelete);
+  const {
+    loading: loadingDelete,
+    error: errorDelete,
+    success: successDelete,
+  } = productDelete;
 
-    const [createProduct, { isLoading: loadingCreate }] =
-        useCreateProductMutation();
+  const productCreate = useSelector((state) => state.productCreate);
+  const {
+    loading: loadingCreate,
+    error: errorCreate,
+    success: successCreate,
+    product: createdProduct,
+  } = productCreate;
 
-    const createProductHandler = async () => {
-        if (window.confirm('Are you sure you want to create a new product?')) {
-            try {
-                await createProduct();
-                refetch();
-            } catch (err) {
-                toast.error(err?.data?.message || err.error);
-            }
-        }
-    };
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
 
-    return (
+  useEffect(() => {
+    dispatch({ type: PRODUCT_CREATE_RESET });
+
+    if (!userInfo || !userInfo.isAdmin) {
+      history.push("/login");
+    }
+
+    if (successCreate) {
+      history.push(`/admin/product/${createdProduct._id}/edit`);
+    } else {
+      dispatch(listProducts("", pageNumber));
+    }
+  }, [
+    dispatch,
+    history,
+    userInfo,
+    successDelete,
+    successCreate,
+    createdProduct,
+    pageNumber,
+  ]);
+
+  const deleteHandler = (id) => {
+    if (window.confirm("Are you sure")) {
+      dispatch(deleteProduct(id));
+    }
+  };
+
+  const createProductHandler = () => {
+    dispatch(createProduct());
+  };
+
+  return (
+    <>
+      <Row className="align-items-center">
+        <Col>
+          <h1>Products</h1>
+        </Col>
+        <Col className="text-end">
+          <Button className="my-3" onClick={createProductHandler}>
+            <FaPlus /> Create Product
+          </Button>
+        </Col>
+      </Row>
+
+      {loadingDelete && <Loader />}
+      {errorDelete && <Message variant="danger">{errorDelete}</Message>}
+      {loadingCreate && <Loader />}
+      {errorCreate && <Message variant="danger">{errorCreate}</Message>}
+      {loading ? (
+        <Loader />
+      ) : error ? (
+        <Message variant="danger">{error}</Message>
+      ) : (
         <>
-            <Row className='align-items-center'>
-                <Col>
-                    <h1>Products</h1>
-                </Col>
-                <Col className='text-end'>
-                    <Button className='my-3' onClick={createProductHandler}>
-                        <FaPlus /> Create Product
+          <Table striped bordered hover responsive className="table-sm">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>PRICE</th>
+                <th>CATEGORY</th>
+                <th>BRAND</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {products.map((product) => (
+                <tr key={product._id}>
+                  <td>{product._id}</td>
+                  <td>{product.name}</td>
+                  <td>${product.price}</td>
+                  <td>{product.category}</td>
+                  <td>{product.brand}</td>
+                  <td>
+                    <LinkContainer to={`/admin/product/${product._id}/edit`}>
+                      <Button variant="light" className="btn-sm mx-2">
+                        <FaEdit />
+                      </Button>
+                    </LinkContainer>
+                    <Button
+                      variant="danger"
+                      className="btn-sm"
+                      onClick={() => deleteHandler(product._id)}
+                    >
+                      <FaTrash style={{ color: "white" }} />
                     </Button>
-                </Col>
-            </Row>
-
-            {loadingCreate && <Loader />}
-            {loadingDelete && <Loader />}
-            {isLoading ? (
-                <Loader />
-            ) : error ? (
-                <Message variant='danger'>{error}</Message>
-            ) : (
-                <>
-                    <Table striped bordered hover responsive className='table-sm'>
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>NAME</th>
-                                <th>PRICE</th>
-                                <th>CATEGORY</th>
-                                <th>BRAND</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {data.products.map((product) => (
-                                <tr key={product._id}>
-                                    <td>{product._id}</td>
-                                    <td>{product.name}</td>
-                                    <td>${product.price}</td>
-                                    <td>{product.category}</td>
-                                    <td>{product.brand}</td>
-                                    <td>
-                                        <LinkContainer to={`/admin/product/${product._id}/edit`}>
-                                            <Button variant='light' className='btn-sm mx-2'>
-                                                <FaEdit />
-                                            </Button>
-                                        </LinkContainer>
-                                        <Button
-                                            variant='danger'
-                                            className='btn-sm'
-                                            onClick={() => deleteHandler(product._id)}
-                                        >
-                                            <FaTrash style={{ color: 'white' }} />
-                                        </Button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </Table>
-                    <Paginate pages={data.pages} page={data.page} isAdmin={true} />
-                </>
-            )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+          <Paginate pages={pages} page={page} isAdmin={true} />
         </>
-    );
+      )}
+    </>
+  );
 };
 
 export default ProductListScreen;

@@ -89,5 +89,83 @@ const products = [
     rating: 0,
     numReviews: 0,
   },
+  {
+    name: "iPhone 13 Pro",
+    image:
+      "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcRTeewNe-AL_ZcK2gcXivgxKMiE9W9zSkHsqs8Lw2qDt-CyHtTz-vCk04KKskBiKT_zhUcQJ00M2p0KtH1nsIACyY0mjjlwHFHIBm4A_ZGHfFprHoV_9SCg08-4lQA57Ds-yA&usqp=CAc",
+    description:
+      "The latest iPhone with a powerful A15 Bionic chip, Super Retina XDR display, and advanced camera system.",
+    brand: "Apple",
+    category: "Electronics",
+    price: 1099.99,
+    countInStock: 5,
+    rating: 0,
+    numReviews: 0,
+  },
+  {
+    name: "Sony WH-1000XM4",
+    image:
+      "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcSPTlMygY7KLlV2ZQYHWgESM193JIfDknLrNSWi_mVH474gSzdy4YOWyeDubAR12irzZXXXajHjNyzaamOlWOWq-72kUJY2OiXZkb5stXZmg3xe0DXN2kfxcCBKaGLkx5cFOQQ&usqp=CAc",
+    description:
+      "Premium wireless headphones with industry-leading noise cancellation and exceptional sound quality.",
+    brand: "Sony",
+    category: "Electronics",
+    price: 349.99,
+    countInStock: 10,
+    rating: 0,
+    numReviews: 0,
+  },
+  {
+    name: "iPad Pro (2021)",
+    image:
+      "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQliKOkhLAvtIr_xW9vdV91QMTJbWcmj6y_IS2KPD4O2IzbG342aOwAXvDbqR_GDkDTICDcbkSW9ManTsOgHquYFUVYHK4f2ewqg9aCPOr841c2nLR_jWxQo-96cIreT6SlVvk&usqp=CAc",
+    description:
+      "The most advanced iPad with the powerful M1 chip, stunning Liquid Retina XDR display, and Apple Pencil support.",
+    brand: "Apple",
+    category: "Electronics",
+    price: 999.99,
+    countInStock: 3,
+    rating: 0,
+    numReviews: 0,
+  },
+  {
+    name: "Samsung Galaxy S21 Ultra",
+    image:
+      "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRZXdTQG9OHGTSSOFMNnMrTlIKER5az_3iukUBn7rdVtWfo06h046xzaHhU2hWbsjTJkG9npFbmjo-vnFrXEsNgyIjoRVMf0oapnTb0q9bdUOLhMwjlJKK9jAl1NiHrZ3YBnJw&usqp=CAc",
+    description:
+      "Feature-packed Android smartphone with a large dynamic AMOLED display, versatile camera setup, and S Pen compatibility.",
+    brand: "Samsung",
+    category: "Electronics",
+    price: 1199.99,
+    countInStock: 8,
+    rating: 0,
+    numReviews: 0,
+  },
+  {
+    name: "iPad Air (2020)",
+    image:
+      "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcR1LYPjJfKvnFdhq-DIp1dovxFp3IqaLRa3efsvPvb3rb0Ln3YeDOppOrbO8aK6GQ-3vnD-C6ZeGQ5yho0yXWowvvEEIasjNxQrXjG7YZ2uJekEEDMVpH5kjW9McjQ3K4cGcLQ&usqp=CAc",
+    description:
+      "Powerful and versatile iPad with an edge-to-edge Liquid Retina display, A14 Bionic chip, and Apple Pencil support.",
+    brand: "Apple",
+    category: "Electronics",
+    price: 599.99,
+    countInStock: 4,
+    rating: 0,
+    numReviews: 0,
+  },
+  {
+    name: "LG OLED CX Series",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsdsk19H1qboVxbWD2yrrneJahCVDijt6WN0Iijs5bNPC0KE6ANIXwKAcC1UPGKDjVCFo&usqp=CAU",
+    description:
+      "Stunning 4K OLED TV with perfect black, infinite contrast, and AI-powered smart features for an immersive viewing experience.",
+    brand: "LG",
+    category: "Electronics",
+    price: 2499.99,
+    countInStock: 2,
+    rating: 0,
+    numReviews: 0,
+  },
 ];
 export default products;
