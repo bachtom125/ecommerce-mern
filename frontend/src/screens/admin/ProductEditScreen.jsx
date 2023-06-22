@@ -109,7 +109,7 @@ const ProductEditScreen = ({ match, history }) => {
         <strong> Go Back</strong>
       </Link>
       <FormContainer>
-        <h1>Edit Product</h1>
+        <h1>Product Information</h1>
         {loadingUpdate && <Loader />}
         {errorUpdate && <Message variant="danger">{errorUpdate}</Message>}
         {loading ? (
@@ -199,7 +199,7 @@ const ProductEditScreen = ({ match, history }) => {
               variant="primary"
               style={{ marginTop: "1rem" }}
             >
-              Update
+              Save
             </Button>
           </Form>
         )}
