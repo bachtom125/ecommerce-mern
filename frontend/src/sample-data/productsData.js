@@ -1,5 +1,6 @@
 const products = [
   {
+    _id: "1",
     name: "ASUS ROG Falchion NX",
     image: "/images/asus.jpg",
     description:
@@ -8,10 +9,11 @@ const products = [
     category: "Electronics",
     price: 2000000,
     countInStock: 15,
-    rating: 0,
-    numReviews: 0,
+    rating: 3.5,
+    numReviews: 15,
   },
   {
+    _id: "2",
     name: "Samsung Galaxy Watch Active2",
     image: "/images/galaxywatchactive2.jpg",
     description:
@@ -24,6 +26,7 @@ const products = [
     numReviews: 0,
   },
   {
+    _id: "3",
     name: "Bose QuietComfort 35 II",
     image: "/images/bose.jpg",
     description:
@@ -36,6 +39,7 @@ const products = [
     numReviews: 0,
   },
   {
+    _id: "4",
     name: "Canon EOS R5",
     image: "/images/canon.jpg",
     description:
@@ -48,6 +52,7 @@ const products = [
     numReviews: 0,
   },
   {
+    _id: "5",
     name: "Apple AirPods Pro",
     image: "/images/airpod.jpg",
     description:
@@ -60,8 +65,22 @@ const products = [
     numReviews: 0,
   },
   {
+    _id: "6",
     name: "Logitech G Pro Wireless",
     image: "/images/gpro.jpg",
+    description:
+      "Wireless gaming mouse that provides reliable performance and accurate tracking. With a lightweight and ergonomic design, you can play your favorite games for hours without discomfort. RGB lighting adds a touch of personalization.",
+    brand: "Logitech",
+    category: "Electronics",
+    price: 149.99,
+    countInStock: 3,
+    rating: 0,
+    numReviews: 0,
+  },
+  {
+    _id: "7",
+    name: "Logitech G Pro Wireless",
+    image: "/images/logitech-wireless-mouse.png",
     description:
       "Wireless gaming mouse that provides reliable performance and accurate tracking. With a lightweight and ergonomic design, you can play your favorite games for hours without discomfort. RGB lighting adds a touch of personalization.",
     brand: "Logitech",
@@ -73,6 +92,7 @@ const products = [
   },
 
   {
+    _id: "8",
     name: "Sony WH-1000XM4",
     image: "/images/asus.jpg",
     description:
@@ -85,6 +105,7 @@ const products = [
     numReviews: 0,
   },
   {
+    _id: "9",
     name: "Canon EOS R5",
     image: "/images/canon.jpg",
     description:
